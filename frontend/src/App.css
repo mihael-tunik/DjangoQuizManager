@@ -1,0 +1,25 @@
+@import  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+
+.quiz-form-text-area 
+{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 95%; 
+ padding: 0 5px;
+ margin: 10px 0;
+ border-radius: 5px;
+}
+
+.quiz-form-text-area:focus{
+  color: black;
+  border-color: black;
+  outline: 0;
+  box-shadow: 0 0 0 0.35rem rgba(0, 123, 255, 0.25)
+}
+ 
+.quiz-form-label 
+{
+ padding: 0 5px;
+ margin: 10px 0;
+}
