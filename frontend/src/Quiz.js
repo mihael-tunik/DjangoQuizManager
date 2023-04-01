@@ -31,7 +31,7 @@ function ProcessQuizData(result){
     
     const alphabet = [];
     const transcript = [];
-    const questionNumber = 3;
+    const questionNumber = 15;
     
     for (var key in result){
         console.log('Read: ' + key + ':' + result[key]) 
@@ -83,9 +83,11 @@ class Quiz extends Component {
         this.state = {
             questions: [],
             qid: 0,
+            chosen : false,
         };
         
         this.handleAnswerOptionClick = this.handleAnswerOptionClick.bind(this);
+        this.handleNextClick = this.handleNextClick.bind(this);
     }
 
     componentDidMount() {
@@ -111,15 +113,36 @@ class Quiz extends Component {
         const current_qid = this.state.qid;
         const current_questions = this.state.questions
 	
+        this.setState({chosen: true});
+    };
+
+    handleNextClick(){
+    
+        const current_qid = this.state.qid;
+        const current_questions = this.state.questions
+	
 	if (current_qid < current_questions.length-1) {
-	    this.setState({qid: current_qid+1});
+	    this.setState({chosen: false, qid: current_qid+1});
 	}
 	else{
-	    this.setState({qid: 0});
+	    this.setState({chosen: false, qid: 0});
 	}
     };
-	
-	
+    
+    chooseColor(chosen, correct){
+        if(chosen && correct){
+            return "green"
+        }        
+        return "white"        
+    }
+    
+    manageControls(chosen){
+        if( chosen ){
+            return "visible"
+        }
+        return "hidden"
+    }
+    
     render() {
         
         const q = this.state.questions[this.state.qid]
@@ -132,18 +155,25 @@ class Quiz extends Component {
            
             <div id="question-container" className="hide">
                     <div className="answer-counter">Stats: {this.state.qid+1}/{this.state.questions.length}</div>
-            
                     <div className="question">{q.questionText}</div>
-        
+                            
                     <div className="answer-buttons">
                     
                         {q.answerOptions.map( opt  => 
-                            <button key = {opt.key}
-                                className="quiz-btn" onClick={() => this.handleAnswerOptionClick(opt.isCorrect)}>
+                            <button key = {opt.key} className="quiz-btn" 
+                                    onClick={() => this.handleAnswerOptionClick(opt.isCorrect)}
+                                    style={{ backgroundColor: this.chooseColor(this.state.chosen, opt.isCorrect) }}>
                                 {opt.answerText}
                             </button>)
                         }
                 
+                    </div>
+                    
+                    <div className="controls">
+                       <button id="next-btn" className="quiz-btn" 
+                       onClick={() => this.handleNextClick()}
+                       style={{ visibility: this.manageControls(this.state.chosen) }}>
+                         Next</button>
                     </div>
         
             </div> 
