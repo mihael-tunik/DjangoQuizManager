@@ -1,5 +1,6 @@
 ![ProjectLogo](screenshots/storage_app.png)
-
+![license](https://img.shields.io/github/license/mihael-tunik/DjangoQuizManager)
+![python](https://img.shields.io/badge/python-3.8.10-green)
 ## About
 This is repository for the QuizManager application.
 Main idea of the project is that most of the quizzes are based on simple binary relation:
