@@ -1,5 +1,13 @@
 @import  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
 
+:root {
+  --color-neutral: rgb(250, 250, 250);
+  --color-wrong:   rgb(256, 0  , 0  );
+  --color-correct: rgb(0  , 256, 0  );
+}
+
+/* quiz forms in API UI */
+
 .quiz-form-text-area 
 {
  display: flex;
@@ -20,6 +28,59 @@
  
 .quiz-form-label 
 {
- padding: 0 5px;
- margin: 10px 0;
+  padding: 0 5px;
+  margin: 10px 0;
+}
+
+/* quiz design */
+
+.quiz-container
+{ 
+  padding: 0;
+  margin: 0;
+  display: flex;
+  
+  width: 100vw;
+  height: 75vh;
+  
+  justify-content: center;
+  align-items: center;
+}
+
+.question
+{
+  font-size: 100px;
+  text-align: center;
+}
+
+.answer-counter
+{
+  --color: var(--color-neutral);
+  
+  
+  padding: 0;
+  margin: 0;
+}
+
+.answer-buttons
+{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.quiz-btn {
+  --color: var(--color-neutral);
+  background-color: var(--color);
+  height: 8vh;
+  width: 15vw;
+  border-radius: 5px;
+  padding: 5px 10px;
+  
+  font-size: 35px;
+  font-weight: bold;
+  
+  outline: none;
 }

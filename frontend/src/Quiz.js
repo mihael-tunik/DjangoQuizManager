@@ -128,27 +128,26 @@ class Quiz extends Component {
         <div>
         {this.state.questions.length > 0 ? (
         
-        <div className="container">
+        <div className="quiz-container">
+           
+            <div id="question-container" className="hide">
+                    <div className="answer-counter">Stats: {this.state.qid+1}/{this.state.questions.length}</div>
+            
+                    <div className="question">{q.questionText}</div>
         
-            <div id="answer-counter">{this.state.qid+1}/{this.state.questions.length}</div>
-    
-                <div id="question-container" className="hide">
-        
-                    <div id="question">{q.questionText}</div>
-        
-                    <div id="answer-buttons" className="btn-grid">
+                    <div className="answer-buttons">
                     
                         {q.answerOptions.map( opt  => 
                             <button key = {opt.key}
-                                className="btn" onClick={() => this.handleAnswerOptionClick(opt.isCorrect)}>
+                                className="quiz-btn" onClick={() => this.handleAnswerOptionClick(opt.isCorrect)}>
                                 {opt.answerText}
                             </button>)
                         }
                 
                     </div>
         
-                </div> 
-    
+            </div> 
+                    
         </div> ) : (<div>Loading...</div>)}
         </div>   
     );
