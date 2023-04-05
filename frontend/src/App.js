@@ -6,13 +6,14 @@ import  QuizCreateUpdate  from './QuizCreateUpdate'
 import  Quiz  from './Quiz'
 
 import './App.css';
+import logo from './images/logo.png';
 
 const BaseLayout = () => (
     <div className="container-fluid">
         
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        
-        <a className="navbar-brand" href="#">QuizManager demo</a>
+        <div className="quiz-logo"><img src={logo} width="80" height="80"/></div>
+        <a className="navbar-brand" href="#">QuizManager</a>
   
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
   

@@ -84,3 +84,8 @@
   
   outline: none;
 }
+
+.quiz-logo {
+  height: 10vh;
+  width: 7vw;
+}
