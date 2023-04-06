@@ -1,7 +1,11 @@
-![ProjectLogo](screenshots/storage_app.png)
+![ProjectLogo](frontend/src/images/logo.png)
+
+Django Quiz Manager
+
 ![license](https://img.shields.io/github/license/mihael-tunik/DjangoQuizManager)
 ![python](https://img.shields.io/badge/python-3.8.10-green)
 ## About
+![image](screenshots/storage_app.png)
 This is repository for the QuizManager application.
 Main idea of the project is that most of the quizzes are based on simple binary relation:
 ```
@@ -51,7 +55,7 @@ npm start
 Congratulations, the app should be running in [localhost:3000](http://localhost:3000) 
 
 ## Requirements
-Python >= 3.7 (see requirements.txt);
+Python >= 3.8.10 (see /backend/requirements.txt);
 NodeJS >= 18.14.2;
 
 ## Acknowledgements
