@@ -10,7 +10,7 @@ python3 manage.py runserver
 ```
 You can use default db.sqlite3 file
 
-![image](screenshots/db_view.png)
+![image](../screenshots/db_view.png)
 
 or you also may need to migrate first if you want to use your own database:
 ```
@@ -28,5 +28,5 @@ In parent project folder run
 docker-compose build
 docker-compose up
 ```
-![image](screenshots/jlpt-5.png)
+![image](../screenshots/jlpt-5.png)
 Congratulations, the app should be running in [localhost:3000](http://localhost:3000)
