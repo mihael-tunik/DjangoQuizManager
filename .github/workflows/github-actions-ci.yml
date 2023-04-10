@@ -1,20 +1,22 @@
-name: telegram message
-on: [push]
+name: CI
+on: 
+  pull_request:
+    branches:
+      - master 
+
 jobs:
 
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: send telegram message on push
+      - name: send telegram message
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
-            
+            ${{ github.actor }} created PR to master:            
             Repository: ${{ github.repository }}
             
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            Link: https://github.com/${{ github.repository }}/pulls/${{github.event.pull_request.number}}
