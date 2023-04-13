@@ -75,7 +75,7 @@
   --color: var(--color-neutral);
   background-color: var(--color);
   height: 8vh;
-  width: 15vw;
+  width: 20vw;
   border-radius: 5px;
   padding: 5px 10px;
   
@@ -88,4 +88,14 @@
 .quiz-logo {
   height: 10vh;
   width: 7vw;
+}
+
+.stats-container{
+  height: 8vh;
+  width: 15vw;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  
+  outline: none;
 }
