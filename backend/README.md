@@ -3,18 +3,20 @@ Python >= 3.8.10 (see requirements.txt);
 NodeJS >= 18.14.2;
 
 ## Manual build
-Run Django API on localhost (it is a good practice to put Django SECRET_KEY value in .env file):
+Run Django API on localhost (don't forget to put Django SECRET_KEY value in .env file):
 ```
-nano .env
 python3 manage.py runserver
+```
+or you also can use gunicorn
+```
+gunicorn QuizManager.wsgi:application --bind 127.0.0.1:8000
 ```
 You can use default db.sqlite3 file
 
 ![image](../screenshots/db_view.png)
 
-or you also may need to migrate first if you want to use your own database:
+or you also may need to migrate first if you want to delete default and use your own database:
 ```
-rm db.sqlite3
 python3 manage.py migrate
 ```
 - Then open ./frontend folder and run:
