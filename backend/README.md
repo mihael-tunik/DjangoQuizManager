@@ -1,9 +1,22 @@
+## Project structure
+The main folders are /backend, /frontend and /nginx.
+They are containing source code and/or configure files necessary for building independent docker containers.
+At the same time project can be set up without Docker and the way you can do it is described below.
+
+## Technology stack
+Django/REST Framework for backend and React.js for frontend part.
+And Nginx is used as reverse-proxy because this project is serious business :)
+
 ## Requirements
-Python >= 3.8.10 (see requirements.txt);
+Python >= 3.8.10;
 NodeJS >= 18.14.2;
 
 ## Manual build
-Run Django API on localhost (don't forget to put Django SECRET_KEY value in .env file):
+- Backend application can be set up as follows. First install dependensies:
+```
+pip3 install -r requirements.txt
+```
+and then run Django API on localhost (don't forget to put Django SECRET_KEY value in your .env file):
 ```
 python3 manage.py runserver
 ```
@@ -19,7 +32,11 @@ or you also may need to migrate first if you want to delete default and use your
 ```
 python3 manage.py migrate
 ```
-- Then open ./frontend folder and run:
+- Then open ./react_frontend folder and install dependencies:
+```
+npm install
+```
+Then simply run command:
 ```
 npm start
 ```
