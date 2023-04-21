@@ -33,6 +33,8 @@ docker-compose up
 The app should be running in [localhost:8080](http://localhost:8080)
 and API should be available on [localhost:8080/api/quizzes/{quiz_id}](http://localhost:8080/api/quizzes)
 
+![image](scheme.png)
+
 For manual build and development check out documentation in /backend/README.md
 
 ## Acknowledgements
