@@ -1,4 +1,4 @@
-![ProjectLogo](frontend/react_frontend/src/images/logo.png)
+<img src="frontend/react_frontend/src/images/logo.png" width=175>
 
 Django Quiz Manager - quiz data storage application with embedded quiz-player on ReactJS. 
 
