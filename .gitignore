@@ -3,3 +3,4 @@
 **/.env
 .vscode
 .dockerignore
+.env.yml
