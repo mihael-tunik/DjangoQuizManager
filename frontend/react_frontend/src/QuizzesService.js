@@ -1,9 +1,11 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:8080';
+const API_URL = process.env.REACT_APP_API_SERVER //'http://localhost:8080';
 
 export default class QuizzesService{
 	
-    constructor(){}
+    constructor(){
+        console.log('API_URL: ', API_URL)   
+    }
 	
     getQuizzes() {
         const url = `${API_URL}/api/quizzes/`;

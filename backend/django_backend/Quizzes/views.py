@@ -17,7 +17,7 @@ def quiz_list(request):
         nextPage = 1
         previousPage = 1
 
-        quizzes = Quiz.objects.all()
+        quizzes = Quiz.objects.order_by('quiz_name')#all()
         page = request.GET.get('page', 1)
         paginator = Paginator(quizzes, 10)
 
