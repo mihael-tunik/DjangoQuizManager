@@ -36,6 +36,10 @@ python3 manage.py migrate
 ```
 npm install
 ```
+Do not forget that this time Nginx is not used, so in .env file port 8000 should be used 
+```
+REACT_APP_API_SERVER=http://localhost:8000
+```
 Then simply run command:
 ```
 npm start
