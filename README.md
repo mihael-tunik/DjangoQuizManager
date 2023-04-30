@@ -36,6 +36,31 @@ and API should be available on [localhost:8080/api/quizzes/{quiz_id}](http://loc
 
 For manual build and development check out documentation in /backend/README.md
 
+## Advanced [work in progress]
+As a first step to production security level you can equip Nginx with self-signed SSL certificate.
+After that the connection between your server and user should become more secure (still nobody will trust you, cause its self-signed).
+
+First generate .pem, .crt and .key files following
+[instructions](https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-on-centos-7).
+```
+cd nginx
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx-selfsigned.key -out nginx-selfsigned.crt
+sudo openssl dhparam -out ./dhparam.pem 2048
+```
+To enable HTTPS use Dockerfile_SSL for nginx (docker-compose.yml):
+```
+  nginx:
+    ...
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile_SSL
+```
+And in .env file change value of REACT_APP_API_SERVER
+```
+REACT_APP_API_SERVER=https://localhost:443
+```
+And then you can set up project as usual (sudo may be necessary for copying .key files).
+
 ## Acknowledgements
 Backend is revised version of this [tutorial](https://github.com/techiediaries/django-react)
 on digital ocean. And frontend is based on my previous project [JSQuiz](https://github.com/mihael-tunik/JSQuiz).
