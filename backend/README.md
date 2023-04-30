@@ -16,7 +16,7 @@ NodeJS >= 18.14.2;
 ```
 pip3 install -r requirements.txt
 ```
-and then run Django API on localhost (don't forget to put Django SECRET_KEY value in your .env file):
+and then run Django API on localhost (don't forget to put Django SECRET_KEY value in your local .env file):
 ```
 python3 manage.py runserver
 ```
@@ -36,7 +36,7 @@ python3 manage.py migrate
 ```
 npm install
 ```
-Do not forget that this time Nginx is not used, so in .env file port 8000 should be used 
+Do not forget that this time Nginx is not used, so in local .env file port 8000 should be used 
 ```
 REACT_APP_API_SERVER=http://localhost:8000
 ```

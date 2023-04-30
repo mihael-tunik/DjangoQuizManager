@@ -24,22 +24,7 @@ Not to mention that this project can be used for educational purposes or as a te
 
 ## Build with Docker and Nginx
 Before you start make sure you have Docker installed (tested on version 20.10.17).
-Then configure .env files with configure.py:
-```
-python3 configure.py --env_file .env.yml
-```
-with
-```
-backend:
-  PATH: ./backend/django_backend/.env
-  SECRET_KEY: 'YOUR SECRET KEY'
-frontend:
-  PATH: ./frontend/react_frontend/.env
-  REACT_APP_API_SERVER: http://localhost:8080
-```
-in your .env.yml file.
-
-Then in parent project folder run
+Then configure global .env file (see .env.global.example) which is linked in docker-compose.yml and in parent project folder run
 ```
 docker-compose build
 docker-compose up
