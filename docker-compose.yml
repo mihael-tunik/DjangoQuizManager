@@ -33,12 +33,13 @@ services:
     restart: always
     build:
       context: ./nginx
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile_SSL
     volumes:
       - django_static_volume:/usr/src/app/django_files/static
       - react_static_volume:/usr/src/app/react_files/static
     ports:
       - 8080:8080
+      - 443:443
     links:
       - frontend
     env_file:
