@@ -47,16 +47,9 @@ cd nginx
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx-selfsigned.key -out nginx-selfsigned.crt
 sudo openssl dhparam -out ./dhparam.pem 2048
 ```
-To enable HTTPS use Dockerfile_SSL for nginx (docker-compose.yml):
+To enable HTTPS in .env file set
 ```
-  nginx:
-    ...
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile_SSL
-```
-And in .env file change value of REACT_APP_API_SERVER
-```
+SSL_MODE=ssl 
 REACT_APP_API_SERVER=https://localhost:443
 ```
 And then you can set up project as usual (sudo may be necessary for copying .key files).

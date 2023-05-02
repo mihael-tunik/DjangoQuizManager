@@ -33,7 +33,9 @@ services:
     restart: always
     build:
       context: ./nginx
-      dockerfile: Dockerfile_SSL
+      dockerfile: Dockerfile
+      args:
+          SSL_mode: ${SSL_MODE}
     volumes:
       - django_static_volume:/usr/src/app/django_files/static
       - react_static_volume:/usr/src/app/react_files/static
