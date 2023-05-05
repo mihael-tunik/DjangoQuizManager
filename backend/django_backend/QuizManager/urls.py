@@ -6,6 +6,7 @@ from Quizzes import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/quizzes/', views.quiz_list, name="quiz-list"),
     re_path(r'^api/quizzes/$', views.quiz_list),
     re_path(r'^api/quizzes/(?P<pk>[0-9]+)$', views.quizzes_detail),
 ]
