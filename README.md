@@ -32,6 +32,16 @@ docker-compose up
 The app should be running in [localhost:8080](http://localhost:8080)
 and API should be available on [localhost:8080/api/quizzes/{quiz_id}](http://localhost:8080/api/quizzes)
 
+## Architecture discussion
+There is three basic [models](https://www.valentinog.com/blog/drf/) how React can be connected to Django.
+```
+- React in its own "frontend" Django app: load a single HTML template and let React manage the frontend;
+- Django REST as a standalone API + React as a standalone SPA;
+- Mix and match: mini React apps inside Django templates.
+```
+This app was made basically the second way from the list.
+It is the most scalable approach with clear possibility to develop and test frontend/backend parts independently.
+ 
 ![image](scheme.png)
 
 For manual build and development check out documentation in /backend/README.md
