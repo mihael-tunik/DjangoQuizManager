@@ -8,13 +8,15 @@
 
 /* quiz forms in API UI */
 
-.quiz-form-text-area 
+.quiz-form-text-area
 {
  display: flex;
  justify-content: center;
  align-items: center;
- width: 95%; 
- padding: 0 5px;
+ resize: none;
+ width: 50%;
+ height: 35%; 
+ padding: 0 15px;
  margin: 10px 0;
  border-radius: 5px;
 }
@@ -30,6 +32,23 @@
 {
   padding: 0 5px;
   margin: 10px 0;
+}
+
+/* new data */
+
+.quiz-form-new-data
+{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ resize: none;
+ width: 25%;
+ height: 35%; 
+ padding: 0 15px;
+ margin: 10px 0;
+ border-radius: 5px;
+ font-size: 25px;
+ text-align: center;
 }
 
 /* quiz design */

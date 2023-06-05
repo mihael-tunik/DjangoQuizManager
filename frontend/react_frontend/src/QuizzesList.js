@@ -54,7 +54,8 @@ class QuizzesList extends Component {
                         <th>Quiz name</th>
                         <th>Description</th>
                         <th>Play link</th>
-                        <th>Update</th>
+                        <th>Append</th>
+                        <th>Settings</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -67,7 +68,8 @@ class QuizzesList extends Component {
 				<td>{c.quiz_name}</td>
 				<td>{c.description}</td>
 				<td><a href={'/play/' + c.pk} > Play </a></td>
-				<td><a href={'/quiz/' + c.pk}> Update </a></td>
+				<td><a href={'/quiz_append/' + c.pk} > Append </a></td>
+				<td><a href={'/quiz/' + c.pk}> Settings </a></td>
 				<td><button onClick={(e) => this.handleDelete(e, c.pk) }> Delete</button></td>
                         </tr>)
                     }

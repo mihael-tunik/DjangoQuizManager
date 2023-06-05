@@ -73,16 +73,18 @@ class QuizCreateUpdate extends Component {
           <div className="form-group">
 
               <label className="quiz-form-label">Quiz name:</label>
-              <input className="form-control" type="text" ref='quiz_name' />
+              <textarea className="quiz-form-text-area" ref='quiz_name' />
 
               <label className="quiz-form-label">Description:</label>
               <textarea className="quiz-form-text-area" ref='description' ></textarea>
 
               <label className="quiz-form-label">Quiz[JSON]:</label>
               <textarea className="quiz-form-text-area" ref='json_content' ></textarea>
-
+              
               <input className="btn btn-primary" type="submit" value="Submit" />
+                           
             </div>
+                      
           </form>
     )
   }
