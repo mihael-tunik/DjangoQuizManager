@@ -1,29 +1,10 @@
 import React, { Component } from 'react'
 import { v4 as uuidV4 } from 'uuid'
+import sample from './Utils'
 
 import QuizzesService from './QuizzesService'
 
 const quizzesService = new QuizzesService()
-
-function sample (n, m) {
-  const res = []
-
-  while (res.length < m) {
-    const candidate = Math.floor(Math.random() * n)
-    let flag = 1
-
-    for (let j = 0; j < res.length; ++j) {
-      if (res[j] === candidate) {
-        flag = 0
-      }
-    }
-
-    if (flag === 1) {
-      res.push(candidate)
-    }
-  }
-  return res
-}
 
 function ProcessQuizData (result) {
   const questions = []
@@ -43,26 +24,30 @@ function ProcessQuizData (result) {
   const variants = 4
 
   for (let question_idx = 0; question_idx < questionNumber; ++question_idx) {
+    /* pick n = variants of indices in vocabulary (alphabet, transcript) */
     const random_idx = sample(length, variants)
+    
+    /* one of them will be question index */
+    const pick_idx = random_idx[0]
+    
+    /* generate answers */
+    const answers = [{ answerText: transcript[pick_idx], isCorrect: true, key: uuidV4() }]
+            
+    for (let j = 1; j < variants; ++j) {
+        answers.push({ answerText: transcript[random_idx[j]], isCorrect: false, key: uuidV4() })
+    }
+    
+    /* shuffle them */ 
     const shuffle = sample(variants, variants)
-
-    // this code is good enough
-    const answers = [
-      { answerText: transcript[random_idx[0]], isCorrect: true, key: uuidV4() },
-      { answerText: transcript[random_idx[1]], isCorrect: false, key: uuidV4() },
-      { answerText: transcript[random_idx[2]], isCorrect: false, key: uuidV4() },
-      { answerText: transcript[random_idx[3]], isCorrect: false, key: uuidV4() }
-    ]
-    //
-
     const answers_shuffled = []
-
+    
     for (let j = 0; j < shuffle.length; ++j) {
       answers_shuffled.push(answers[shuffle[j]])
     }
 
+    /* remember pick_idx and use it to build quiz question */
     const quiz_item = {
-      questionText: alphabet[random_idx[0]],
+      questionText: alphabet[pick_idx],
       answerOptions: answers_shuffled
     }
 
@@ -194,4 +179,5 @@ class Quiz extends Component {
     )
   }
 }
+
 export default Quiz
