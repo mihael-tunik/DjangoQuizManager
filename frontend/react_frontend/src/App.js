@@ -13,7 +13,7 @@ const BaseLayout = () => (
     <div className="container-fluid">
 
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="quiz-logo"><img src={logo} width="80" height="80"/></div>
+        <div className="quiz-logo"><img src={logo} width="70" height="70"/></div>
         
         <a className="navbar-brand" href="#">QuizManager</a>
 
