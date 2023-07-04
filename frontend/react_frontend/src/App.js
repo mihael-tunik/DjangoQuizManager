@@ -1,5 +1,12 @@
-import React, { Component } from 'react'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import React, { Component, useContext } from 'react'
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
+
+import { AuthProvider } from './context/AuthContext'
+import AuthContext from './context/AuthContext'
+
+import PrivateRoute from './utils/PrivateRoute'
+
+import LoginPage from './pages/LoginPage'
 
 import QuizzesList from './QuizzesList'
 import QuizCreateUpdate from './QuizCreateUpdate'
@@ -9,7 +16,12 @@ import Quiz from './Quiz'
 import './App.css'
 import logo from './images/logo.png'
 
-const BaseLayout = () => (
+const BaseLayout = () => {
+
+    let { user, logoutUser } = useContext(AuthContext)
+        
+    return (
+    
     <div className="container-fluid">
 
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,27 +37,39 @@ const BaseLayout = () => (
             <div className="navbar-nav">
                 <a className="nav-item nav-link" href="/">QUIZZES</a>
                 <a className="nav-item nav-link" href="/quiz">CREATE QUIZ</a>
+                
+                {user ? (
+                <span onClick={logoutUser}>LOGOUT</span>
+                ) : (
+                <Link to="/login" >LOGIN</Link>
+                )}
             </div>
         </div>
 
         </nav>
 
-    <div className="content">
-          <Route path="/" exact component={QuizzesList} />
-          <Route path="/quiz/:pk" component={QuizCreateUpdate} />
-          <Route path="/quiz/" exact component={QuizCreateUpdate} />
-          <Route path="/quiz_append/:pk" component={QuizAppend} />
-          <Route path="/play/:pk" component={Quiz} />
+    <div className="content">         
+        <Routes>
+          <Route path="/" element={<QuizzesList/>} />
+          <Route path="/quiz/:pk" element={<PrivateRoute><QuizCreateUpdate/></PrivateRoute>} />
+          <Route path="/quiz/" element={<PrivateRoute><QuizCreateUpdate/></PrivateRoute>} />
+          <Route path="/quiz_append/:pk" element={<PrivateRoute><QuizAppend/></PrivateRoute>} />
+          <Route path="/play/:pk" element={<PrivateRoute><Quiz/></PrivateRoute>} />
+          <Route path="/login" element={<LoginPage/>}/>
+        </Routes>
     </div>
 
-  </div>
-)
+    </div>
+  )
+}
 
 class App extends Component {
   render () {
     return (
       <BrowserRouter>
-        <BaseLayout/>
+        <AuthProvider>
+          <BaseLayout/>
+        </AuthProvider>
       </BrowserRouter>
     )
   }
