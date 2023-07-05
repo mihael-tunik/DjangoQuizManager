@@ -50,11 +50,13 @@ const BaseLayout = () => {
 
     <div className="content">         
         <Routes>
-          <Route path="/" element={<QuizzesList/>} />
+          <Route path="/" element={<PrivateRoute><QuizzesList/></PrivateRoute>} />
           <Route path="/quiz/:pk" element={<PrivateRoute><QuizCreateUpdate/></PrivateRoute>} />
           <Route path="/quiz/" element={<PrivateRoute><QuizCreateUpdate/></PrivateRoute>} />
           <Route path="/quiz_append/:pk" element={<PrivateRoute><QuizAppend/></PrivateRoute>} />
+          
           <Route path="/play/:pk" element={<PrivateRoute><Quiz/></PrivateRoute>} />
+          
           <Route path="/login" element={<LoginPage/>}/>
         </Routes>
     </div>

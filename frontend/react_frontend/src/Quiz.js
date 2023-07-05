@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component, useReducer, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { v4 as uuidV4 } from 'uuid'
 import sample from './Utils'
 
@@ -57,11 +58,24 @@ function ProcessQuizData (result) {
   return questions
 }
 
-class Quiz extends Component {
-  constructor (props) {
-    super(props)
+function chooseColor (chosen, correct) {
+    if (chosen && correct) {
+      return 'green'
+    }
+    return 'white'
+}
 
-    this.state = {
+function manageControls (chosen) {
+    if (chosen) {
+      return 'visible'
+    }
+    return 'hidden'
+}
+
+        
+export default function Quiz() {
+    
+    const init_state = {
       questions: [],
       qid: 0,
       chosen: false,
@@ -70,85 +84,78 @@ class Quiz extends Component {
       show_stats: false
     }
 
-    this.handleAnswerOptionClick = this.handleAnswerOptionClick.bind(this)
-    this.handleNextClick = this.handleNextClick.bind(this)
-  }
+    const { pk } = useParams()
+    
+    const [qstate, setQState] = useReducer(
+        (state, updates) => ({...state, ...updates}),
+        init_state
+    );
+    
+    useEffect(() => {
+         
+      if (pk) {
+        quizzesService.getQuiz(pk).then((result) => {
+          result = JSON.parse(result.json_content)
+          
+          console.log(result)          
+          const loaded_questions = ProcessQuizData(result)
+          console.log(loaded_questions)
+          
+          setQState({questions: loaded_questions})
+          
+        })
+      }
+    
+    }, []);  
 
-  componentDidMount () {
-    const { match: { params } } = this.props
-
-    if (params && params.pk) {
-      quizzesService.getQuiz(params.pk).then((result) => {
-        result = JSON.parse(result.json_content)
-        const loaded_questions = ProcessQuizData(result)
-
-        console.log(loaded_questions)
-
-        this.setState({ questions: loaded_questions })
-      })
-    }
-  }
-
-  handleAnswerOptionClick (isCorrect) {
-    const current_qid = this.state.qid
-    const current_questions = this.state.questions
-
-    this.setState({ chosen: true, is_correct: isCorrect })
-  };
-
-  handleNextClick () {
-    const current_qid = this.state.qid
-    const current_questions = this.state.questions
-    const current_rcnt = this.state.right_ans_cnt
-
-    if (current_qid < current_questions.length - 1) {
-	    if (this.state.is_correct) {
-	        this.setState({ right_ans_cnt: current_rcnt + 1 })
+    function handleNextClick () {
+      const current_qid = qstate.qid
+      const current_questions = qstate.questions
+      const current_rcnt = qstate.right_ans_cnt
+      const current_correct = qstate.is_correct
+      
+      if (current_qid < current_questions.length - 1) {
+	    if (current_correct) {
+	        setQState({right_ans_cnt: current_rcnt + 1})
 	    }
-	    this.setState({ chosen: false, qid: current_qid + 1 })
-    } else {
-	    this.setState({ show_stats: true })
+	    setQState({chosen: false, qid: current_qid + 1})
+      } else {
+            setQState({show_stats: true})
+      }
     }
-  };
-
-  handleRestartClick () {
-    this.setState({ chosen: false, qid: 0, is_correct: false, right_ans_cnt: 0, show_stats: false })
-  };
-
-  chooseColor (chosen, correct) {
-    if (chosen && correct) {
-      return 'green'
+  
+    function handleAnswerOptionClick (isCorrect) {
+      const current_qid = qstate.qid
+      const current_questions = qstate.questions
+      
+      setQState({chosen: true, is_correct: isCorrect})
     }
-    return 'white'
-  }
 
-  manageControls (chosen) {
-    if (chosen) {
-      return 'visible'
+    function handleRestartClick () {
+      setQState({chosen: false, qid: 0, is_correct: false, right_ans_cnt: 0, show_stats: false})    
     }
-    return 'hidden'
-  }
 
-  render () {
-    const q = this.state.questions[this.state.qid]
-
+    const current_qid = qstate.qid
+    const q = qstate.questions[current_qid]
+    const qlength = qstate.questions.length
+     
     return (
         <div>
-        {this.state.questions.length > 0
+        {qlength > 0
           ? (
 
         <div className="quiz-container">
-            {(this.state.show_stats === false)
+            {(qstate.show_stats === false)
               ? (
 
             <div id="question-container" className="hide">
-                <div className="answer-counter">Question: {this.state.qid + 1}/{this.state.questions.length}</div>
+                <div className="answer-counter">Question: {current_qid + 1}/{qstate.questions.length}</div>
                 <div className="question">{q.questionText}</div>
                 <div className="answer-buttons">
                     {q.answerOptions.map(opt =>
                             <button key = {opt.key} className="quiz-btn"
-                                    onClick={() => this.handleAnswerOptionClick(opt.isCorrect)}
-                                    style={{ backgroundColor: this.chooseColor(this.state.chosen, opt.isCorrect) }}>
+                                    onClick={() => handleAnswerOptionClick(opt.isCorrect)}
+                                    style={{ backgroundColor: chooseColor(qstate.chosen, opt.isCorrect) }}>
                                 {opt.answerText}
                             </button>)
                     }
@@ -156,8 +163,8 @@ class Quiz extends Component {
 
                 <div className="controls">
                     <button id="next-btn" className="quiz-btn"
-                    onClick={() => this.handleNextClick()}
-                    style={{ visibility: this.manageControls(this.state.chosen) }}>
+                    onClick={() => handleNextClick()}
+                    style={{ visibility: manageControls(qstate.chosen) }}>
                     Next</button>
                 </div>
 
@@ -165,10 +172,10 @@ class Quiz extends Component {
                 )
               : (
                 <div className="stats-container">
-                     <div className="result-stats">Your result: {this.state.right_ans_cnt}/{this.state.questions.length}</div>
+                     <div className="result-stats">Your result: {qstate.right_ans_cnt}/{qlength}</div>
 
                      <button id="restart-btn" className="quiz-btn"
-                     onClick={() => this.handleRestartClick()}>
+                     onClick={() => handleRestartClick()}>
                      Restart</button>
                 </div>
                 )}
@@ -177,7 +184,5 @@ class Quiz extends Component {
           : (<div>Loading...</div>)}
         </div>
     )
-  }
 }
 
-export default Quiz
