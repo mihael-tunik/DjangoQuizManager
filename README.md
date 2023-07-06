@@ -67,4 +67,5 @@ And then you can set up project as usual (sudo may be necessary for copying .key
 ## Acknowledgements
 Backend is revised version of this [tutorial](https://github.com/techiediaries/django-react)
 on digital ocean. And frontend is based on my previous project [JSQuiz](https://github.com/mihael-tunik/JSQuiz).
-Also big thanks to this [template](https://github.com/Ceci-Aguilera/django-react-nginx-mysql-docker).
+Big thanks to this [docker-template](https://github.com/Ceci-Aguilera/django-react-nginx-mysql-docker) and
+this [tutorial](https://github.com/seankwarren/Django-React-jwt-authentication) for JWT authentication.
