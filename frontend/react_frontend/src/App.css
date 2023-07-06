@@ -118,3 +118,9 @@
   
   outline: none;
 }
+
+.nav-item{
+  height: 2vh;
+  width: 6vw;
+  text-align: center;
+}

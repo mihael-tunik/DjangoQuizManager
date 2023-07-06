@@ -35,14 +35,10 @@ const BaseLayout = () => {
 
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-                <a className="nav-item nav-link" href="/">QUIZZES</a>
-                <a className="nav-item nav-link" href="/quiz">CREATE QUIZ</a>
-                
-                {user ? (
-                <span onClick={logoutUser}>LOGOUT</span>
-                ) : (
-                <Link to="/login" >LOGIN</Link>
-                )}
+                <div className="nav-item"><Link to="/" >QUIZZES</Link></div>                
+                <div className="nav-item"><Link to="/quiz" >CREATE QUIZ</Link></div>  
+                <div className="nav-item">{user ? (<span onClick={logoutUser}>LOGOUT</span>) :
+                (<Link to="/login" >LOGIN</Link> )}</div>
             </div>
         </div>
 
