@@ -56,9 +56,9 @@ export default function QuizCreateUpdate(){
   
     function handleSubmit (event) {  
       if (pk) {
-        this.handleUpdate(pk)
+        handleUpdate(pk)
       } else {
-        this.handleCreate()
+        handleCreate()
       }
   
       event.preventDefault()
