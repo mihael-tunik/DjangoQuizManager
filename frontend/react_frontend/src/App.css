@@ -76,7 +76,6 @@
 {
   --color: var(--color-neutral);
   
-  
   padding: 0;
   margin: 0;
 }
@@ -123,4 +122,24 @@
   height: 2vh;
   width: 6vw;
   text-align: center;
+}
+
+.login-input{
+  width: 15vw;
+    
+  align-items: center;
+  
+  padding: 5px;
+  margin: 10px;
+}
+
+.login-container{
+  height: 8vh;
+  width: 25vw;
+  
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  
+  outline: none;
 }
