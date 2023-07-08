@@ -16,14 +16,6 @@ NodeJS >= 18.14.2;
 ```
 pip3 install -r requirements.txt
 ```
-and then run Django API on localhost (don't forget to put Django SECRET_KEY value in your local .env file):
-```
-python3 manage.py runserver
-```
-or you also can use gunicorn
-```
-gunicorn QuizManager.wsgi:application --bind 127.0.0.1:8000
-```
 You can use default db.sqlite3 file
 
 ![image](../screenshots/db_view.png)
@@ -40,8 +32,23 @@ Do not forget that this time Nginx is not used, so in local .env file port 8000 
 ```
 REACT_APP_API_SERVER=http://localhost:8000
 ```
-Then simply run command:
+
+## Run
+New version use authentication via JWT, so you need to create user before run:
 ```
+python3 manage.py createsuperuser
+```
+and after you can finally run Django API on localhost (don't forget to put Django SECRET_KEY value in your local .env file):
+```
+python3 manage.py runserver
+```
+or you also can use gunicorn
+```
+gunicorn QuizManager.wsgi:application --bind 127.0.0.1:8000
+```
+Then simply run:
+```
+cd frontend/react_frontend
 npm start
 ```
 ![image](../screenshots/jlpt-5.png)
