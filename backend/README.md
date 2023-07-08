@@ -54,3 +54,9 @@ npm start
 ![image](../screenshots/jlpt-5.png)
 Congratulations, the app should be running in [localhost:3000](http://localhost:3000)
 and API should be available on [localhost:8000/api/quizzes](http://localhost:8000/api/quizzes)
+
+## API endpoints
+
+- /api/quizzes/{id}
+- /api/users/token/
+- /api/users/token/refresh
