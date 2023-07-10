@@ -4,6 +4,7 @@
 **/*.pem
 **/*.crt
 **/*.key
+backend/django_backend/db.sqlite3
 .vscode
 .dockerignore
 .env.yml
