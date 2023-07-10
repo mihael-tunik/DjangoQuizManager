@@ -22,16 +22,6 @@ Many quizzes behave in this way, including such important examples like word qui
 
 Not to mention that this project can be used for educational purposes or as a template for typical Django/React web-application.
 
-## Build with Docker and Nginx
-Before you start make sure you have Docker installed (tested on version 20.10.17).
-Then configure global .env file (see .env.global.example) which is linked in docker-compose.yml and in parent project folder run
-```
-docker-compose build
-docker-compose up
-```
-The app should be running in [localhost:8080](http://localhost:8080)
-and API should be available on [localhost:8080/api/quizzes/{quiz_id}](http://localhost:8080/api/quizzes)
-
 ## Architecture discussion
 There is three basic [models](https://www.valentinog.com/blog/drf/) how React can be connected to Django.
 ```
@@ -41,10 +31,21 @@ There is three basic [models](https://www.valentinog.com/blog/drf/) how React ca
 ```
 This app was made basically the second way from the list.
 It is the most scalable approach with clear possibility to develop and test frontend/backend parts independently.
- 
-![image](scheme.png)
 
+## Build
 For manual build and development check out documentation in /backend/README.md
+
+## Build with Docker and Nginx [work in progress, unstable]
+Before you start make sure you have Docker installed (tested on version 20.10.17).
+Then configure global .env file (see .env.global.example) which is linked in docker-compose.yml and in parent project folder run
+```
+docker-compose build
+docker-compose up
+```
+The app should be running in [localhost:8080](http://localhost:8080)
+and API should be available on [localhost:8080/api/quizzes/{quiz_id}](http://localhost:8080/api/quizzes)
+
+![image](scheme.png)
 
 ## Advanced [work in progress]
 As a first step to production security level you can equip Nginx with self-signed SSL certificate.
