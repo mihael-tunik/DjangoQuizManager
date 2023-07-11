@@ -18,7 +18,7 @@ import logo from './images/logo.png'
 
 const BaseLayout = () => {
 
-    let { user, logoutUser } = useContext(AuthContext)
+    //let { user, logoutUser } = useContext(AuthContext)
         
     return (
     
@@ -37,8 +37,6 @@ const BaseLayout = () => {
             <div className="navbar-nav">
                 <div className="nav-item"><Link to="/" >QUIZZES</Link></div>                
                 <div className="nav-item"><Link to="/quiz" >CREATE QUIZ</Link></div>  
-                <div className="nav-item">{user ? (<span onClick={logoutUser}>LOGOUT</span>) :
-                (<Link to="/login" >LOGIN</Link> )}</div>
             </div>
         </div>
 
@@ -46,12 +44,12 @@ const BaseLayout = () => {
 
     <div className="content">         
         <Routes>
-          <Route path="/" element={<PrivateRoute><QuizzesList/></PrivateRoute>} />
-          <Route path="/quiz/:pk" element={<PrivateRoute><QuizCreateUpdate/></PrivateRoute>} />
-          <Route path="/quiz/" element={<PrivateRoute><QuizCreateUpdate/></PrivateRoute>} />
-          <Route path="/quiz_append/:pk" element={<PrivateRoute><QuizAppend/></PrivateRoute>} />
+          <Route path="/" element={<QuizzesList/>} />
+          <Route path="/quiz/:pk" element={<QuizCreateUpdate/>} />
+          <Route path="/quiz/" element={<QuizCreateUpdate/>} />
+          <Route path="/quiz_append/:pk" element={<QuizAppend/>} />
           
-          <Route path="/play/:pk" element={<PrivateRoute><Quiz/></PrivateRoute>} />
+          <Route path="/play/:pk" element={<Quiz/>} />
           
           <Route path="/login" element={<LoginPage/>}/>
         </Routes>
@@ -65,9 +63,9 @@ class App extends Component {
   render () {
     return (
       <BrowserRouter>
-        <AuthProvider>
+
           <BaseLayout/>
-        </AuthProvider>
+
       </BrowserRouter>
     )
   }

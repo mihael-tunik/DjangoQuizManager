@@ -35,7 +35,7 @@ It is the most scalable approach with clear possibility to develop and test fron
 ## Build
 For manual build and development check out documentation in /backend/README.md
 
-## Build with Docker and Nginx [work in progress, unstable]
+## Build with Docker and Nginx
 Before you start make sure you have Docker installed (tested on version 20.10.17).
 Then configure global .env file (see .env.global.example) which is linked in docker-compose.yml and in parent project folder run
 ```

@@ -17,7 +17,9 @@ export const AuthProvider = ({children}) => {
     const navigate = useNavigate()
 
     let loginUser = async (e) => {
+                
         e.preventDefault()
+                            
         const response = await fetch(`${API_URL}/api/users/token/`, {
             method: 'POST',
             headers: {
@@ -29,6 +31,7 @@ export const AuthProvider = ({children}) => {
         let data = await response.json();
 
         if(data){
+                        
             localStorage.setItem('authTokens', JSON.stringify(data));
             setAuthTokens(data)
             setUser(jwtDecode(data.access))
@@ -36,6 +39,8 @@ export const AuthProvider = ({children}) => {
         } else {
             alert('Something went wrong while logging in the user!')
         }
+        
+
     }
 
     let logoutUser = () => {
@@ -58,6 +63,7 @@ export const AuthProvider = ({children}) => {
         const data = await response.json()
         if (response.status === 200) {
             setAuthTokens(data)
+                        
             setUser(jwtDecode(data.access))
             localStorage.setItem('authTokens',JSON.stringify(data))
         } else {
